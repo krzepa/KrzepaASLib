@@ -30,10 +30,10 @@
 		{
 			var kw:Number = fromWidth / toWidth;
 			var kh:Number = fromHeight / toHeight;
-            var k:Number = Math.min(kw,kh);
-			if(fromWidth/fromHeight<1) {
-				k = Math.max(kw,kh);
-			}
+            var k:Number = Math.max(kw,kh);
+			
+		
+			
 			var newW:Number = Math.floor(fromWidth / k);
 			var newH:Number = Math.floor(fromHeight / k);
             var newX:Number = Math.floor((toWidth - newW) * 0.5);
