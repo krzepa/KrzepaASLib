@@ -21,9 +21,9 @@ package com.krzepa.gui.loaders
 		{
 			_config = config ? config : new LoaderConfig();
 			if(this.loaderInfo) {
-				loaderInfo.addEventListener( IOErrorEvent.IO_ERROR, function( evt:IOErrorEvent ):void { XLogger.info('io error: ' + evt) } );
+				loaderInfo.addEventListener( IOErrorEvent.IO_ERROR, errorHandler );
 				try {
-					loaderInfo['uncaughtErrorEvents'].addEventListener(UncaughtErrorEvent.UNCAUGHT_ERROR, function( evt:IOErrorEvent ):void { XLogger.info('uncaught error: ' + evt) });					
+					loaderInfo['uncaughtErrorEvents'].addEventListener(UncaughtErrorEvent.UNCAUGHT_ERROR, errorHandler );					
 				} catch(err:Error) {};
 			}
 			addEventListener( Event.ADDED_TO_STAGE , addedToStageHandler );
@@ -141,7 +141,13 @@ package com.krzepa.gui.loaders
 				removeChild(_loader as DisplayObject);
 				_loader = null;				
 			} catch(err:Error) {};
-		}		
+		}
+		
+		private function errorHandler(evt:Event):void
+		{
+			XLogger.info(evt);		
+		}
+		
 		
 	}
 }
